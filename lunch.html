@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="style.css"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            @media (max-width: 800px) {
+                /* Блок с блюдами - 2 колонки */
+                .dishes-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+                
+                /* Навигационное меню - равномерное распределение */
+                nav {
+                    justify-content: space-between;
+                }
+            }
+
+            @media (max-width: 600px) {
+                h1 {
+                    text-align: center;
+                }
+                /* Навигационное меню - вертикальное направление */
+                nav {
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 10px;
+                }
+                
+                /* Увеличение шрифта ссылок на 4px */
+                nav a {
+                    font-size: calc(2rem + 4px);
+                }
+                
+                h2 {
+                    text-align: center;
+                }
+                
+                /* Блок с блюдами - 1 колонка */
+                .dishes-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+        <title>Document</title>
+    </head>
+    <body>
+        <header>
+            <h1>Food Construct</h1>
+            <nav class="menu">
+                <a href="/index.html">О нас</a>
+                <a href="/lunch.html" class="active">Собрать ланч</a>
+                <a href="">Заказы</a>
+                <a href="#contacts">Контакты</a>
+            </nav>
+        </header>
+        <main>
+            <section>
+                <h2>Выберите суп</h2>
+                <div class="dishes-grid">
+                    <div class="dish">
+                        <img src="/images/soups/gazpacho.jpg" alt="Гаспачо" class="dishes-img">
+                        <p>195</p>
+                        <p class="dish-name">Гаспачо</p>
+                        <p class="dish-weight dish-bottom">350 г</p>
+                        <button class="add-button">Добавить</button>
+                    </div>
+                    <div class="dish">
+                        <img src="/images/soups/mushroom_soup.jpg" alt="Грибной суп-пюре" class="dishes-img">
+                        <p>185</p>
+                        <p class="dish-name">Грибной суп-пюре</p>
+                        <p class="dish-weight">330 г</p>
+                        <button class="add-button">Добавить</button>
+                    </div>
+                    <div class="dish">
+                        <img src="/images/soups/norwegian_soup.jpg" alt="Норвежский суп" class="dishes-img">
+                        <p>270</p>
+                        <p class="dish-name">Норвежский суп</p>
+                        <p class="dish-weight">330 г</p>
+                        <button class="add-button">Добавить</button>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <h2>Выберите главное блюдо</h2>
+                <div class="dishes-grid">
+                    <div class="dish">
+                        <img src="/images/main_course/friedpotatoeswithmushrooms1.jpg" alt="Жареная картошка с грибами" class="dishes-img">
+                        <p>150</p>
+                        <p class="dish-name">Жареная картошка с грибами</p>
+                        <p class="dish-weight dish-bottom">250 г</p>
+                        <button class="add-button">Добавить</button>
+                    </div>
+                    <div class="dish">
+                        <img src="/images/main_course/lasagna.jpg" alt="Лазанья" class="dishes-img">
+                        <p>385</p>
+                        <p class="dish-name">Лазанья</p>
+                        <p class="dish-weight">310 г</p>
+                        <button class="add-button">Добавить</button>
+                    </div>
+                    <div class="dish">
+                        <img src="/images/main_course/chickencutletsandmashedpotatoes.jpg" alt="Котлеты из курицы с картофельнымм пюре" class="dishes-img">
+                        <p>225</p>
+                        <p class="dish-name">Котлеты из курицы с картофельнымм пюре</p>
+                        <p class="dish-weight">280 г</p>
+                        <button class="add-button">Добавить</button>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <h2>Выберите напиток</h2>
+                <div class="dishes-grid">
+                    <div class="dish">
+                        <img src="/images/beverages/orangejuice.jpg" alt="Апельсиновый сок" class="dishes-img">
+                        <p>120</p>
+                        <p class="dish-name">Апельсиновый сок</p>
+                        <p class="dish-weight dish-bottom">300 мл</p>
+                        <button class="add-button">Добавить</button>
+                    </div>
+                    <div class="dish">
+                        <img src="/images/beverages/applejuice.jpg" alt="Яблочный сок" class="dishes-img">
+                        <p>90</p>
+                        <p class="dish-name">Яблочный сок</p>
+                        <p class="dish-weight">300 мл</p>
+                        <button class="add-button">Добавить</button>
+                    </div>
+                    <div class="dish">
+                        <img src="/images/beverages/carrotjuice.jpg" alt="Морковный сок" class="dishes-img">
+                        <p>110</p>
+                        <p class="dish-name">Морковный сок</p>
+                        <p class="dish-weight">300 мл</p>
+                        <button class="add-button">Добавить</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <a id="contacts" href=":tel89041119274">Позвонить нам +7-904-111-92-74</a>
+        </footer>
+    </body>
+</html>

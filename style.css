@@ -1,0 +1,188 @@
+header, main {
+    padding-left: 50px;
+    padding-bottom: 30px;
+}
+header {
+    padding-block: 30px;
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight:bolder;
+    padding-bottom: 20px;
+}
+
+nav a {
+    color: black;
+    text-decoration: none;
+    padding-right: 20px;
+    font-size: 2rem;
+}
+
+nav :hover {
+    color:rgb(222, 149, 31)
+}
+
+footer :hover {
+    color:rgb(222, 149, 31)
+}
+
+img {
+    width: 50%;
+}
+
+section {
+    padding-bottom: 7px;
+}
+
+ul {
+    padding: 0;
+    margin-left: -20;
+}
+
+ul li {
+    font-size: 1.7rem;
+    float:none;
+}
+
+h2 {
+    font-size: 2rem;
+    font-weight:bolder;
+}
+
+section p {
+    font-size: 2rem;
+}
+
+footer {
+    background-color: black;
+    text-align: left;
+    width: 100%;
+    height: 90px;
+    padding-top: 50px;
+
+    flex-shrink: 0;
+}
+
+footer a {
+    text-decoration: none;
+    color: white;
+    font-size: 2rem;
+    vertical-align: bottom;
+    padding-left: 50px;
+}
+
+
+
+table {
+  width: auto;
+  
+}
+
+td {
+  text-align: center;
+  font-size: 1.7rem;
+}
+th {
+  background-color:  #f5d3a2;
+  color: rgb(0, 0, 0);
+  
+}
+th, td {
+    padding: 10px;
+    border-color:  #f5d3a2;
+    border-style: solid;
+    border-radius: 7%;
+    font-size: 1.7rem;
+}
+
+.dishes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    max-width: 1400px;
+    width: 100%;
+}
+
+.dish {
+    padding: 30px 40px;
+    border-radius: 35px;
+    background: white;
+    cursor: pointer;
+    filter: drop-shadow(17px 19px 24px rgba(0, 0, 0, 0.13));
+    transition: all 0.3s ease;
+}
+
+.dish:hover {
+    border: 2px solid tomato;
+}
+
+.dish-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.dish-name {
+    font-size: 1.9rem;
+    color: #2c3e50;
+    font-weight: 600;
+    flex: 1;
+    padding-right: 15px;
+}
+
+.dish-price {
+    font-size: 1.3rem;
+    color: #e74c3c;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.dish-weight {
+    color: #7f8c8d;
+    font-size: 1.5rem;
+}
+
+.add-button {
+    width: 100%;
+    background: #f1eee9;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 10px;
+    padding: 10px 30px;
+    margin-top: 10px;
+    font-size: 1.3rem;
+    font-weight: 400;
+    cursor: pointer;
+    transition: background 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center
+}
+
+.add-button:hover {
+    background: tomato;
+}
+
+.add-button i {
+    font-size: 0.9rem;
+    height: 100%;
+}
+
+a.active { 
+    color: #f00; 
+    font-weight: bold; 
+}
+
+.dishes-img {
+    width: 100%;
+    border-radius: 35px;
+}
+
+
+.menu {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 15px;
+}
