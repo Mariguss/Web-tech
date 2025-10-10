@@ -285,11 +285,12 @@ button[type="reset"]:hover {
 }
 
 .form-columns {
-display: flex;          /* Создает flex-контейнер */
-gap: 8%;    
-margin: 6%         /* Расстояние между колонками */
+    display: flex;          /* Создает flex-контейнер */
+    gap: 8%;    
+    margin: 6%         /* Расстояние между колонками */
 }
 
 .form-column {
     flex: 1;               /* Каждая колонка занимает равное пространство */
 }
+

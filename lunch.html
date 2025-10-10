@@ -76,37 +76,14 @@
                 <div class="form-column"> 
                     <h2>Ваш заказ</h2>
                     
-                    <div class="form-group">
-                        <label for="soup">Суп</label>
-                        <select id="soup" name="soup" required>
-                            <option value="" selected disabled>– Выберите суп –</option>
-                            <option value="gaspacho">Гаспачо</option>
-                            <option value="mushroom_soup">Грибной суп-пюре</option>
-                            <option value="norwegian_soup">Норвежский суп</option>
-                        </select>
+                    <div id="order-display">
                     </div>
                     
                     <div class="form-group">
-                        <label for="main-course">Главное блюдо</label>
-                        <select id="main-course" name="main_course" required>
-                            <option value="" selected disabled>– Выберите главное блюдо –</option>
-                            <option value="friedpotatoeswithmushrooms1">Жареная картошка с грибами</option>
-                            <option value="lasagna">Лазанья</option>
-                            <option value="chickencutletsandmashedpotatoes">Котлеты из курицы с картофельным пюре</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="drink">Напиток</label>
-                        <select id="drink" name="drink" required>
-                            <option value="" selected disabled>– Выберите напиток –</option>
-                            <option value="orangejuice">Апельсиновый сок</option>
-                            <option value="applejuice">Яблочный сок</option>
-                            <option value="carrotjuice">Морковный сок</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
+                        <input type="hidden" id="selected-soup" name="selected_soup">
+                        <input type="hidden" id="selected-main-course" name="selected_main_course">
+                        <input type="hidden" id="selected-drink" name="selected_drink">
+                        <input type="hidden" id="total-price" name="total_price">
                         <label for="comment">Комментарии к заказу</label>
                         <textarea id="comment" name="comment" placeholder="Ваши пожелания к заказу..."></textarea>
                     </div>
@@ -175,5 +152,6 @@
         
         <script src="dishes.js"></script>
         <script src="display.js"></script>
+        <script src="order.js"></script>
     </body>
 </html>
