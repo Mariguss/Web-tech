@@ -294,3 +294,30 @@ button[type="reset"]:hover {
     flex: 1;               /* Каждая колонка занимает равное пространство */
 }
 
+.filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap; /* чтобы кнопки переносились на малых экранах */
+    /* justify-content: center; если нужно центрировать */
+}
+
+.filter-btn {
+    padding: 8px 16px;
+    background-color: #e9f7ef;
+    color: #000;
+    border: 1px solid transparent;
+    border-radius: 50px;
+    font-size: 1.3rem;
+    cursor: pointer;
+    white-space: nowrap; /* запрет переноса текста */
+    transition: all 0.2s ease;
+}
+
+.filter-btn.active {
+    background-color: #ffffff; 
+    color: #28a745;
+    border-color: #28a745;
+    font-size: 1.3rem;
+    font-weight: bold;
+}

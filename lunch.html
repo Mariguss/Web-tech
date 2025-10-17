@@ -55,16 +55,57 @@
             </nav>
         </header>
         <main>
-            <section>
+            <section data-category="soup">
                 <h2>Выберите суп</h2>
+                <div class="filters">
+                    <button class="filter-btn active" data-kind="all">Все</button>
+                    <button class="filter-btn" data-kind="fish">Рыбный</button>
+                    <button class="filter-btn" data-kind="meat">Мясной</button>
+                    <button class="filter-btn" data-kind="veg">Вегетарианский</button>
+                </div>
                 <div class="dishes-grid"></div>
             </section>
-            <section>
+
+            <section data-category="main_course">
                 <h2>Выберите главное блюдо</h2>
+                <div class="filters">
+                    <button class="filter-btn active" data-kind="all">Все</button>
+                    <button class="filter-btn" data-kind="meat">Мясное</button>
+                    <button class="filter-btn" data-kind="veg">Вегетарианское</button>
+                    <button class="filter-btn" data-kind="fish">Рыбное</button>
+                </div>
                 <div class="dishes-grid"></div>
             </section>
-            <section>
+
+            <section data-category="beverage">
                 <h2>Выберите напиток</h2>
+                <div class="filters">
+                    <button class="filter-btn active" data-kind="all">Все</button>
+                    <button class="filter-btn" data-kind="cold">Холодный</button>
+                    <button class="filter-btn" data-kind="hot">Горячий</button>
+                </div>
+                <div class="dishes-grid"></div>
+            </section>
+
+            <section data-category="salad">
+                <h2>Выберите салат или стартер</h2>
+                <div class="filters">
+                    <button class="filter-btn active" data-kind="all">Все</button>
+                    <button class="filter-btn" data-kind="meat">Мясной</button>
+                    <button class="filter-btn" data-kind="veg">Вегетарианский</button>
+                    <button class="filter-btn" data-kind="small">Маленькая порция</button>
+                </div>
+                <div class="dishes-grid"></div>
+            </section>
+
+            <section data-category="dessert">
+                <h2>Выберите десерт</h2>
+                <div class="filters">
+                    <button class="filter-btn active" data-kind="all">Все</button>
+                    <button class="filter-btn" data-kind="small">Маленькая порция</button>
+                    <button class="filter-btn" data-kind="medium">Средняя порция</button>
+                    <button class="filter-btn" data-kind="large">Большая порция</button>
+                </div>
                 <div class="dishes-grid"></div>
             </section>
         </main>
@@ -83,6 +124,9 @@
                         <input type="hidden" id="selected-soup" name="selected_soup">
                         <input type="hidden" id="selected-main-course" name="selected_main_course">
                         <input type="hidden" id="selected-drink" name="selected_drink">
+                        <input type="hidden" id="total-price" name="total_price">
+                        <input type="hidden" id="selected-salad" name="salad">
+                        <input type="hidden" id="selected-dessert" name="dessert">
                         <input type="hidden" id="total-price" name="total_price">
                         <label for="comment">Комментарии к заказу</label>
                         <textarea id="comment" name="comment" placeholder="Ваши пожелания к заказу..."></textarea>

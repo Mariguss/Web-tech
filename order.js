@@ -5,9 +5,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function initializeOrderManager() {
     window.currentOrder = {
-        soup: null,
-        main_course: null,
-        beverage: null
+    soup: null,
+    main_course: null,
+    beverage: null,
+    salad: null,      
+    dessert: null     
     };
     
     console.log('Current order initialized:', window.currentOrder);
@@ -74,7 +76,9 @@ function updateOrderDisplay() {
     const categories = [
         { key: 'soup', name: 'Суп' },
         { key: 'main_course', name: 'Главное блюдо' },
-        { key: 'beverage', name: 'Напиток' }
+        { key: 'beverage', name: 'Напиток' },
+        { key: 'salad', name: 'Салат или стартер' },  
+        { key: 'dessert', name: 'Десерт' }       
     ];
     
     let totalPrice = 0;
@@ -141,11 +145,15 @@ function updateFormData() {
     const mainInput = document.getElementById('selected-main-course');
     const drinkInput = document.getElementById('selected-drink');
     const totalInput = document.getElementById('total-price');
-    
+    const saladInput = document.getElementById('selected-salad');
+    const dessertInput = document.getElementById('selected-dessert');
+
     if (soupInput) soupInput.value = window.currentOrder.soup || '';
     if (mainInput) mainInput.value = window.currentOrder.main_course || '';
     if (drinkInput) drinkInput.value = window.currentOrder.beverage || '';
-    
+    if (saladInput) saladInput.value = window.currentOrder.salad || '';
+    if (dessertInput) dessertInput.value = window.currentOrder.dessert || '';
+
     let totalPrice = 0;
     if (window.currentOrder.soup) {
         const soup = dishes.find(d => d.keyword === window.currentOrder.soup);
@@ -159,7 +167,14 @@ function updateFormData() {
         const drink = dishes.find(d => d.keyword === window.currentOrder.beverage);
         totalPrice += drink ? drink.price : 0;
     }
-    
+    if (window.currentOrder.salad) {
+        const salad = dishes.find(d => d.keyword === window.currentOrder.salad);
+        totalPrice += salad ? salad.price : 0;
+    }
+    if (window.currentOrder.dessert) {
+        const dessert = dishes.find(d => d.keyword === window.currentOrder.dessert);
+        totalPrice += dessert ? dessert.price : 0;
+    }
     if (totalInput) totalInput.value = totalPrice;
     
     console.log('Form data updated for submission');
