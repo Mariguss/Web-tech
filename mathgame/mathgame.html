@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Math Game</title>
+</head>
+<body>
+    <div id="app">
+        <h1>Math Game</h1>
+        <div id="start">
+            <h2>Выберите уровень:</h2>
+            <button onclick="start('beginner')">Начальный</button>
+            <button onclick="start('intermediate')">Средний</button>
+            <button onclick="start('advanced')">Продвинутый</button>
+        </div>
+        <div id="game" style="display:none;">
+            <div id="level-info"></div>
+            <div id="stats"></div>
+            <div id="question"></div>
+            <input id="answer" type="text">
+            <button onclick="check()">Проверить</button>
+            <div id="result"></div>
+        </div>
+        <div id="end" style="display:none;"></div>
+    </div>
+
+    <script>
+        // объявление переменных
+        let currentLevel = 'beginner';
+        let correct = 0, incorrect = 0, total = 0;
+        let time = 300, timer;
+        let usedQuestions = new Set();
+        const QUESTIONS_PER_LEVEL = 5;
+        
+        const levels = {
+            beginner: { name: 'Начальный', ops: ['+', '-', '*', '/'] },
+            intermediate: { name: 'Средний', ops: ['>', '<', '>=', '<=', '==', '!='] },
+            advanced: { name: 'Продвинутый', ops: ['AND', 'OR', 'XOR', 'NOT'] }
+        };
+        
+        function start(level) {
+            currentLevel = level;
+            correct = incorrect = total = 0;
+            time = 300;
+            usedQuestions.clear();
+            clearInterval(timer);
+            timer = setInterval(updateTimer, 1000);
+            document.getElementById('start').style.display = 'none';
+            document.getElementById('game').style.display = 'block';
+            document.getElementById('end').style.display = 'none';
+            updateDisplay();
+            nextQuestion();
+        }
+        
+        function updateTimer() {
+            time--;
+            updateDisplay();
+            if (time <= 0) endGame(false);
+        }
+        
+        function updateDisplay() {
+            document.getElementById('level-info').textContent = `Уровень: ${levels[currentLevel].name}`;
+            document.getElementById('stats').textContent = 
+                `Правильно: ${correct} | Неправильно: ${incorrect} | Всего: ${total}/${QUESTIONS_PER_LEVEL} | Время: ${Math.floor(time/60)}:${String(time%60).padStart(2,'0')}`;
+        }
+        
+        function generateQuestion() {
+            const ops = levels[currentLevel].ops;
+            const op = ops[Math.floor(Math.random() * ops.length)];
+            
+            if (currentLevel === 'beginner') { // начальный уровень
+                const a = Math.floor(Math.random() * 20) + 1;
+                const b = Math.floor(Math.random() * 20) + 1;
+                let answer;
+                if (op === '/') {
+                    // деление без остатка
+                    const result = Math.floor(Math.random() * 10) + 1;
+                    const divisor = Math.floor(Math.random() * 10) + 1;
+                    const dividend = result * divisor;
+                    return { q: `${dividend} ${op} ${divisor}`, a: result.toString(), key: `${dividend}${op}${divisor}` };
+                } else {
+                    answer = eval(`${a}${op}${b}`);
+                    return { q: `${a} ${op} ${b}`, a: answer.toString(), key: `${a}${op}${b}` };
+                }
+            }
+            else if (currentLevel === 'intermediate') { // средний уровень
+                // генерируем числа и операторы сравнения
+                const a = Math.floor(Math.random() * 50) - 25;
+                const b = Math.floor(Math.random() * 50) - 25;
+                let result;
+                switch(op) {
+                    case '>': result = a > b; break;
+                    case '<': result = a < b; break;
+                    case '>=': result = a >= b; break;
+                    case '<=': result = a <= b; break;
+                    case '==': result = a == b; break;
+                    case '!=': result = a != b; break;
+                }
+                const answer = result ? 'true' : 'false';
+                return { q: `${a} ${op} ${b}`, a: answer, key: `${a}${op}${b}` };
+            }
+            else if (currentLevel === 'advanced') { // продвинутый
+                // логические операции с двоичными числами
+                const a = Math.floor(Math.random() * 16);
+                const b = Math.floor(Math.random() * 16);
+                let answer, question;
+                switch(op) {
+                    case 'AND':
+                        answer = a & b;
+                        question = `${a} AND ${b}`;
+                        break;
+                    case 'OR':
+                        answer = a | b;
+                        question = `${a} OR ${b}`;
+                        break;
+                    case 'XOR':
+                        answer = a ^ b;
+                        question = `${a} XOR ${b}`;
+                        break;
+                    case 'NOT':
+                        answer = ~a & 15; // 
+                        question = `NOT ${a}`;
+                        break;
+                }
+                return { q: question, a: answer.toString(), key: question };
+            }
+        }
+        
+        function getUniqueQuestion() { // генерируется уникальный вопрос
+            let attempts = 0;
+            while (attempts < 100) {
+                const q = generateQuestion();
+                if (!usedQuestions.has(q.key)) {
+                    usedQuestions.add(q.key);
+                    return q;
+                }
+                attempts++;
+            }
+            usedQuestions.clear();
+            return generateQuestion();
+        }
+        
+        function nextQuestion() {
+            if (total >= QUESTIONS_PER_LEVEL) {
+                const accuracy = (correct / QUESTIONS_PER_LEVEL) * 100; // вычисление в процентах общего количества правильных ответов 
+                if (accuracy >= 80 && currentLevel !== 'advanced') { // перейдет ли на след уровень
+                    // перейти на следующий уровень
+                    const levelOrder = ['beginner', 'intermediate', 'advanced'];
+                    const currentIndex = levelOrder.indexOf(currentLevel)// текущий уровень
+                    if (currentIndex < 2) {
+                        currentLevel = levelOrder[currentIndex + 1];
+                        correct = incorrect = total = 0;// обнуление показателей 
+                        usedQuestions.clear();
+                        updateDisplay();
+                        nextQuestion();
+                        return;
+                    }
+                }
+                endGame(true);
+                return;
+            }
+            
+            const question = getUniqueQuestion();
+            document.getElementById('question').textContent = `${question.q} = ?`;
+            document.getElementById('answer').value = '';
+            document.getElementById('result').textContent = '';
+            document.getElementById('answer').focus();
+        }
+        
+        function check() {
+            const userAnswer = document.getElementById('answer').value.trim().toLowerCase();
+            const question = getUniqueQuestion();
+        }
+        
+        let currentQuestion = null;
+        
+        function nextQuestion() {
+            if (total >= QUESTIONS_PER_LEVEL) {
+                const accuracy = (correct / QUESTIONS_PER_LEVEL) * 100;
+                if (accuracy >= 80 && currentLevel !== 'advanced') {
+                    const levelOrder = ['beginner', 'intermediate', 'advanced'];
+                    const currentIndex = levelOrder.indexOf(currentLevel);
+                    if (currentIndex < 2) {
+                        currentLevel = levelOrder[currentIndex + 1];
+                        correct = incorrect = total = 0;
+                        usedQuestions.clear();
+                        updateDisplay();
+                        nextQuestion();
+                        return;
+                    }
+                }
+                endGame(true);
+                return;
+            }
+            
+            currentQuestion = getUniqueQuestion();
+            document.getElementById('question').textContent = `${currentQuestion.q} = ?`;
+            document.getElementById('answer').value = '';
+            document.getElementById('result').textContent = '';
+            document.getElementById('answer').focus();
+        }
+        
+        function check() {
+            const userAnswer = document.getElementById('answer').value.trim().toLowerCase();
+            const correctAnswer = currentQuestion.a.toLowerCase();
+            
+            total++;
+            if (userAnswer === correctAnswer) {
+                correct++;
+                document.getElementById('result').textContent = 'Правильно!';
+                document.getElementById('result').style.color = 'green';
+            } else {
+                incorrect++;
+                document.getElementById('result').textContent = `Неправильно! Правильный ответ: ${currentQuestion.a}`;
+                document.getElementById('result').style.color = 'red';
+            }
+            
+            updateDisplay();
+            
+            if (total >= QUESTIONS_PER_LEVEL) {
+                setTimeout(() => {
+                    const accuracy = (correct / QUESTIONS_PER_LEVEL) * 100;
+                    if (accuracy >= 80 && currentLevel !== 'advanced') {
+                        const levelOrder = ['beginner', 'intermediate', 'advanced'];
+                        const currentIndex = levelOrder.indexOf(currentLevel);
+                        if (currentIndex < 2) {
+                            currentLevel = levelOrder[currentIndex + 1];
+                            correct = incorrect = total = 0;
+                            usedQuestions.clear();
+                            updateDisplay();
+                            nextQuestion();
+                            return;
+                        }
+                    }
+                    endGame(true);
+                }, 1500);
+            } else {
+                setTimeout(nextQuestion, 1500);
+            }
+        }
+        
+        function endGame(success) {
+            clearInterval(timer);
+            let message;
+            if (success) {
+                if (currentLevel === 'advanced' && (correct / QUESTIONS_PER_LEVEL) * 100 >= 80) {
+                    message = '<h2>Поздравляем! Вы завершили все уровни!</h2>';
+                } else {
+                    message = `<h2>Игра завершена!</h2>
+                              <p>Финальный уровень: ${levels[currentLevel].name}</p>`;
+                }
+            } else {
+                message = '<h2>Время вышло!</h2>';
+            }
+            
+            const accuracy = total > 0 ? Math.round((correct / total) * 100) : 0;
+            message += `<p>Правильных ответов: ${correct}</p>
+                       <p>Неправильных ответов: ${incorrect}</p>
+                       <p>Точность: ${accuracy}%</p>
+                       <button onclick="restartGame()">Перезапустить игру</button>
+                       <button onclick="exitGame()">Выйти в меню</button>`;
+            
+            document.getElementById('end').innerHTML = message;
+            document.getElementById('game').style.display = 'none';
+            document.getElementById('end').style.display = 'block';
+        }
+        
+        function restartGame() {
+            start(currentLevel);
+        }
+        
+        function exitGame() {
+            clearInterval(timer);
+            document.getElementById('end').style.display = 'none';
+            document.getElementById('start').style.display = 'block';
+        }
+        
+        document.getElementById('answer').onkeypress = e => { if (e.key === 'Enter') check(); };
+        
+        if (typeof Set === 'undefined') {
+            usedQuestions = [];
+            usedQuestions.clear = function() { this.length = 0; };
+            usedQuestions.has = function(item) { return this.indexOf(item) !== -1; };
+            usedQuestions.add = function(item) { this.push(item); };
+        }
+    </script>
+</body>
+</html>

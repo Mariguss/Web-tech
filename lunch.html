@@ -54,7 +54,113 @@
                 <a href="#contacts">Контакты</a>
             </nav>
         </header>
+        <section style="margin: 2rem;">
+            <h2 style="text-align: center;">Доступные для заказа комбо</h2>
+            <div class="combo-grid">
+                <!-- Комбо 1 -->
+                <div class="combo-item">
+                    <div class="combo-row">
+                        <div class="combo-dish">
+                            <img src="images/icons/soup.png" alt="Суп" class="combo-icon">
+                            <span>Суп</span>
+                        </div>
+                        <div class="combo-dish">
+                            <img src="images/icons/main.png" alt="Главное блюдо" class="combo-icon">
+                            <span>Главное блюдо</span>
+                        </div>
+                        <div class="combo-dish">
+                            <img src="images/icons/salad.png" alt="Салат" class="combo-icon">
+                            <span>Салат</span>
+                        </div>
+                        <div class="combo-dish">
+                            <img src="images/icons/drink.png" alt="Напиток" class="combo-icon">
+                            <span>Напиток</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Комбо 2 -->
+                <div class="combo-item">
+                    <div class="combo-row">
+                        <div class="combo-dish">
+                            <img src="images/icons/soup.png" alt="Суп" class="combo-icon">
+                            <span>Суп</span>
+                        </div>
+                        <div class="combo-dish">
+                            <img src="images/icons/main.png" alt="Главное блюдо" class="combo-icon">
+                            <span>Главное блюдо</span>
+                        </div>
+                        <div class="combo-dish">
+                            <img src="images/icons/drink.png" alt="Напиток" class="combo-icon">
+                            <span>Напиток</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Комбо 3 -->
+                <div class="combo-item">
+                    <div class="combo-row">
+                        <div class="combo-dish">
+                            <img src="images/icons/soup.png" alt="Суп" class="combo-icon">
+                            <span>Суп</span>
+                        </div>
+                        <div class="combo-dish">
+                            <img src="images/icons/salad.png" alt="Салат" class="combo-icon">
+                            <span>Салат</span>
+                        </div>
+                        <div class="combo-dish">
+                            <img src="images/icons/drink.png" alt="Напиток" class="combo-icon">
+                            <span>Напиток</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Комбо 4 -->
+                <div class="combo-item">
+                    <div class="combo-row">
+                        <div class="combo-dish">
+                            <img src="images/icons/main.png" alt="Главное блюдо" class="combo-icon">
+                            <span>Главное блюдо</span>
+                        </div>
+                        <div class="combo-dish">
+                            <img src="images/icons/salad.png" alt="Салат" class="combo-icon">
+                            <span>Салат</span>
+                        </div>
+                        <div class="combo-dish">
+                            <img src="images/icons/drink.png" alt="Напиток" class="combo-icon">
+                            <span>Напиток</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Комбо 5 -->
+                <div class="combo-item">
+                    <div class="combo-row">
+                        <div class="combo-dish">
+                            <img src="images/icons/main.png" alt="Главное блюдо" class="combo-icon">
+                            <span>Главное блюдо</span>
+                        </div>
+                        <div class="combo-dish">
+                            <img src="images/icons/drink.png" alt="Напиток" class="combo-icon">
+                            <span>Напиток</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Десерт -->
+                <div class="combo-item">
+                    <div class="combo-row">
+                        <div class="combo-dish">
+                            <img src="images/icons/desert.png" alt="Десерт" class="combo-icon">
+                            <span>Десерт</span>
+                        </div>
+                    </div>
+                    <div class="combo-note">(Можно добавить к любому заказу)</div>
+                </div>
+            </div>
+        </section>
         <main>
+            
             <section data-category="soup">
                 <h2>Выберите суп</h2>
                 <div class="filters">
@@ -65,8 +171,7 @@
                 </div>
                 <div class="dishes-grid"></div>
             </section>
-
-            <section data-category="main_course">
+            <section data-category="main-course">
                 <h2>Выберите главное блюдо</h2>
                 <div class="filters">
                     <button class="filter-btn active" data-kind="all">Все</button>
@@ -77,7 +182,7 @@
                 <div class="dishes-grid"></div>
             </section>
 
-            <section data-category="beverage">
+            <section data-category="drink">
                 <h2>Выберите напиток</h2>
                 <div class="filters">
                     <button class="filter-btn active" data-kind="all">Все</button>
@@ -124,10 +229,9 @@
                         <input type="hidden" id="selected-soup" name="selected_soup">
                         <input type="hidden" id="selected-main-course" name="selected_main_course">
                         <input type="hidden" id="selected-drink" name="selected_drink">
-                        <input type="hidden" id="total-price" name="total_price">
-                        <input type="hidden" id="selected-salad" name="salad">
-                        <input type="hidden" id="selected-dessert" name="dessert">
-                        <input type="hidden" id="total-price" name="total_price">
+                        <input type="hidden" id="selected-salad" name="selected_salad">
+                        <input type="hidden" id="selected-dessert" name="selected_dessert">
+                        <input type="hidden" id="total-price" name="total-price">
                         <label for="comment">Комментарии к заказу</label>
                         <textarea id="comment" name="comment" placeholder="Ваши пожелания к заказу..."></textarea>
                     </div>
@@ -194,7 +298,7 @@
             <a id="contacts" href=":tel89041119274">Позвонить нам +7-904-111-92-74</a>
         </footer>
         
-        <script src="dishes.js"></script>
+        <!-- <script src="dishes.js"></script> -->
         <script src="display.js"></script>
         <script src="order.js"></script>
     </body>
